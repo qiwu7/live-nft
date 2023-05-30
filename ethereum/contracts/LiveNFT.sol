@@ -2,6 +2,7 @@
 pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract LiveNFT is ERC721URIStorage {
@@ -19,7 +20,7 @@ contract LiveNFT is ERC721URIStorage {
 
         string memory tokenURI = string(abi.encodePacked(
             "https://live-nft.herokuapp.com/address/",
-            holder,
+            Strings.toHexString(uint256(uint160(holder)), 20),
             "/metadata"
         ));
 
