@@ -13,15 +13,11 @@ const schemaRegistryContractAddress = "0x720c2bA66D19A725143FBf5fDC5b4ADA2742682
 const schemaRegistry = new SchemaRegistry(schemaRegistryContractAddress);
 schemaRegistry.connect(baseProvider);
 
-const map = {
-    "0x83C2bbef5a09C4B46E049917a41E05fAf74b6275": [
-        "0x9918f23d4d26e59b69ed88c4c4ad78faa62426a4ce4d6e6be93d895a001f338e"
-    ],
-};
 
 // TODO: figure out if there is an indexer
 async function getAddressAttestations(address) {
-    const attestationUIDs = map[address];
+    const attestationMap = JSON.parse(process.env.ATTESTATION_MAP || {});
+    const attestationUIDs = attestationMap[address];
 
     var attestations = [];
     for (let index = 0; index < attestationUIDs.length; index++) {

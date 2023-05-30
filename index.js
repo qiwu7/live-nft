@@ -1,11 +1,13 @@
 const fs = require("fs/promises");
 const express = require("express");
 const _ = require("lodash");
+const dotenv = require("dotenv");
 
 const { getAddressAttestations, getAttestation } = require("./services/attestations");
 const { createPNGStream } = require("./services/image");
 
 const app = express();
+dotenv.config();
 
 app.get("/address/:address/attestations", async (req, res) => {
     const address = req.params.address;
