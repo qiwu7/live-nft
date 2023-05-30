@@ -39,7 +39,7 @@ app.get("/address/:address/metadata", async (req, res) => {
     res.json({
         name: "Skylight",
         description: "A skylight is an architectural feature that consists of a window or opening in a roof or ceiling, allowing natural light to enter a building or enclosed space from above.",
-        image: `https://live-nft.herokuapp.com/address/${address}/image`
+        image: `https://livenfty.fly.dev/address/${address}/image`
     });
 });
 
