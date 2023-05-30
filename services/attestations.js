@@ -14,7 +14,7 @@ const schemaRegistry = new SchemaRegistry(schemaRegistryContractAddress);
 schemaRegistry.connect(baseProvider);
 
 const attestationMap ={
-    "0x83C2bbef5a09C4B46E049917a41E05fAf74b6275":[
+    "0x83c2bbef5a09c4b46e049917a41e05faf74b6275":[
         "0x9918f23d4d26e59b69ed88c4c4ad78faa62426a4ce4d6e6be93d895a001f338e",
         "0x133776f5c5253455c9e3e523181874a7a11223571e3ef0498152757f7160b9c1"
     ]
