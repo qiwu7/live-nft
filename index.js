@@ -33,4 +33,14 @@ app.get("/address/:address/image", async (req, res) => {
     stream.pipe(res);
 });
 
+app.get("/address/:address/metadata", async (req, res) => {
+    const address = req.params.address;
+
+    res.json({
+        name: "Skylight",
+        description: "A skylight is an architectural feature that consists of a window or opening in a roof or ceiling, allowing natural light to enter a building or enclosed space from above.",
+        image: `https://live-nft.herokuapp.com/address/${address}/image`
+    });
+});
+
 app.listen(process.env.PORT || 3000, () => console.log("API Server is running"));
