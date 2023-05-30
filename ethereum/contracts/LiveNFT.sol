@@ -19,7 +19,7 @@ contract LiveNFT is ERC721URIStorage {
         _mint(holder, newItemId);
 
         string memory tokenURI = string(abi.encodePacked(
-            "https://livenfty.fly.dev/address/"
+            "https://livenfty.fly.dev/address/",
             Strings.toHexString(uint256(uint160(holder)), 20),
             "/metadata"
         ));
