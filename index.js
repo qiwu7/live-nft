@@ -10,7 +10,9 @@ const app = express();
 dotenv.config();
 
 app.get("/address/:address/attestations", async (req, res) => {
-    const address = req.params.address;
+    const address = req.params.address.toLocaleLowerCase();
+    console.log("address: " + address);
+
     const attestations = await getAddressAttestations(address);
 
     res.json({
@@ -21,7 +23,8 @@ app.get("/address/:address/attestations", async (req, res) => {
 
 app.get("/address/:address/image", async (req, res) => {
     const address = req.params.address.toLocaleLowerCase();
-    console.log("address: " + address)
+    console.log("address: " + address);
+
     const attestations = await getAddressAttestations(address);
     var text = `My Passport\n${address}\n\n`;
     for (let i = 0; i < attestations.length; i++) {
@@ -35,7 +38,7 @@ app.get("/address/:address/image", async (req, res) => {
 });
 
 app.get("/address/:address/metadata", async (req, res) => {
-    const address = req.params.address;
+    const address = req.params.address.toLocaleLowerCase();
 
     res.json({
         name: "Skylight",

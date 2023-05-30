@@ -16,7 +16,8 @@ schemaRegistry.connect(baseProvider);
 const attestationMap ={
     "0x83c2bbef5a09c4b46e049917a41e05faf74b6275":[
         "0x9918f23d4d26e59b69ed88c4c4ad78faa62426a4ce4d6e6be93d895a001f338e",
-        "0x133776f5c5253455c9e3e523181874a7a11223571e3ef0498152757f7160b9c1"
+        "0x133776f5c5253455c9e3e523181874a7a11223571e3ef0498152757f7160b9c1",
+        "0x8dcc77650283d7548fffef7c61c334b45043b0da195ae46c539180cef49986e1"
     ]
 }
 
@@ -30,7 +31,7 @@ async function getAddressAttestations(address) {
         const attestationRecord = await eas.getAttestation(uid);
         const schemaUID = attestationRecord.schema;
         const data = attestationRecord.data;
-        if (attestationRecord.recipient !== address) {
+        if (attestationRecord.recipient.toLocaleLowerCase() !== address) {
             console.log(`attestation recpient ${attestationRecord.recipient} is not for address ${address}`);
             continue;
         }
