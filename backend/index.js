@@ -14,13 +14,7 @@ app.get("/outift", (req, res) => {
 
 app.get("/address/:address/attestations", async (req, res) => {
     const address = req.params.address;
-    const attestationIDs = getAddressAttestations(address);
-
-    var attestations = [];
-    for (let index = 0; index < attestationIDs.length; index++) {
-        const attestation = await getAttestation(attestationIDs[index]);
-        attestations.push(attestation);
-    }
+    const attestations = getAddressAttestations(address);
 
     res.json({
         address: address,

@@ -20,27 +20,30 @@ const map = {
 };
 
 // TODO: figure out if there is an indexer
-function getAddressAttestations(address) {
-    return map[address];
+async function getAddressAttestations(address) {
+    const attestationUIDs = map[address];
+
+    var attestations = [];
+    for (let index = 0; index < attestationUIDs.length; index++) {
+        const uid = attestationUIDs[index];
+        const attestationRecord = await eas.getAttestation(uid);
+        const schemaUID = attestationRecord.schema;
+        const data = attestationRecord.data;
+        if (attestationRecord.recipient !== recipient) {
+            continue;
+        }
+
+        const schemaRecord = await schemaRegistry.getSchema({ uid: schemaUID });
+
+        const attestation = {
+            schema: schemaRecord.schema,
+            data: data,
+        }
+        attestations.push(attestation);
+    }
 }
 
-async function getAttestation(uid, recipient) {
-    const attestation = await eas.getAttestation(uid);
-    const schemaUID = attestation.schema;
-    const data = attestation.data;
-    if (attestation.recipient !== recipient) {
-        return {}
-    }
-
-    const schemaRecord = await schemaRegistry.getSchema({uid: schemaUID});
-
-    return {
-        schema: schemaRecord.schema,
-        data: data,
-    }
-}
 
 module.exports = {
     getAddressAttestations,
-    getAttestation,
 };
