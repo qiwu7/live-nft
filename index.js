@@ -1,19 +1,11 @@
 const fs = require("fs/promises");
 const express = require("express");
-const cors = require("cors");
 const _ = require("lodash");
-const { v4: uuid } = require("uuid");
 
 const { getAddressAttestations, getAttestation } = require("./services/attestations");
 const { createPNGStream } = require("./services/image");
 
-const PORT = env.process.PORT || 3000;
-
 const app = express();
-
-app.get("/outift", (req, res) => {
-    res.send("this is working");
-});
 
 app.get("/address/:address/attestations", async (req, res) => {
     const address = req.params.address;
@@ -39,4 +31,4 @@ app.get("/address/:address/image", async (req, res) => {
     stream.pipe(res);
 });
 
-app.listen(PORT, () => console.log("API Server is running"));
+app.listen(process.env.PORT || 3000, () => console.log("API Server is running"));
