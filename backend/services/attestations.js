@@ -29,7 +29,8 @@ async function getAddressAttestations(address) {
         const attestationRecord = await eas.getAttestation(uid);
         const schemaUID = attestationRecord.schema;
         const data = attestationRecord.data;
-        if (attestationRecord.recipient !== recipient) {
+        if (attestationRecord.recipient !== address) {
+            console.log(`attestation recpient ${attestationRecord.recipient} is not for address ${address}`);
             continue;
         }
 
@@ -41,8 +42,9 @@ async function getAddressAttestations(address) {
         }
         attestations.push(attestation);
     }
-}
 
+    return attestations;
+}
 
 module.exports = {
     getAddressAttestations,
