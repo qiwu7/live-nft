@@ -7,6 +7,8 @@ const { v4: uuid } = require("uuid");
 const { getAddressAttestations, getAttestation } = require("./services/attestations");
 const { createPNGStream } = require("./services/image");
 
+const PORT = env.process.PORT || 3000;
+
 const app = express();
 
 app.get("/outift", (req, res) => {
@@ -37,4 +39,4 @@ app.get("/address/:address/image", async (req, res) => {
     stream.pipe(res);
 });
 
-app.listen(9000, () => console.log("API Server is running"));
+app.listen(PORT, () => console.log("API Server is running"));
