@@ -5,7 +5,7 @@ const easContractAddress = "0xAcfE09Fd03f7812F022FBf636700AdEA18Fd2A7A"; // Base
 // Gets a default provider (in production use something else like infura/alchemy)
 const eas = new EAS(easContractAddress);
 const baseProvider = new ethers.providers.JsonRpcProvider(
-    "https://crimson-withered-pine.base-goerli.discover.quiknode.pro/428835148f43c77dc2ba641b619dc9eb05ba6d61/"
+    "https://goerli.base.org"
 );
 eas.connect(baseProvider);
 
